@@ -9,7 +9,9 @@ const server = http.createServer((req, res) => {
     res.write("<h1>Omar is shit!</h1>")
     res.write("</body>");
     res.write("</html>");
+    res.end() //this is how node knows that it should end the sending back to the client.
 });
+
 //this takes a function which is a request listener ...
 // this funciotn excutes with every comming request.
 
