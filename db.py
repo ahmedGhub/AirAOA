@@ -12,6 +12,21 @@ con = psycopg2.connect(
 
 cur = con.cursor()
 
+# insert into db
+# cur.execute("insert into branch (branch_id, country, location) values (%s, %s, %s);", (1257, 'Canada', 'uOttawa'))
+#execute the query
+# cur.execute('select * from branch')
+# rows = cur.fetchall()
+# for r in rows:
+#     print (r)
+# commit the transaction
+# con.commit()
+
+cur.close()
+
+# close the connection
+con.close()
+
 
 def q1():
     query = """ SELECT first_name, last_name, property_type, price, signing_date, property.country, payment_type, status FROM(guest inner join rental_agreement
@@ -25,9 +40,9 @@ def q1():
     return cur.fetchall()
 
 
-# TODO
 def q2():
     query = """
+            SELECT * FROM GiestListView
             """
 
     cur.execute(query)
@@ -132,9 +147,3 @@ def q10():
 
     cur.execute(query)
     return cur.fetchall()
-
-
-cur.close()
-
-# close the connection
-con.close()
