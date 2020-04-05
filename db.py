@@ -27,8 +27,7 @@ def q1():
 
 # TODO
 def q2():
-    query = """
-            """
+    query = """SELECT * FROM GuestListView"""
 
     cur.execute(query)
     return cur.fetchall()
