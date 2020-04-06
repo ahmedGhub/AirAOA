@@ -125,13 +125,14 @@ def q9_guestPhoneUpdate(phone_number, username):
 # note here i am only calling the function without creating it
 
 
-def q10_firstNameFirst():
+def q10_firstNameFirst(firstname, lastname):
     '''Create and test a user-defined function named FirstNameFirst that combines
     two attributes of the guest named firstName and lastName into a concatenated
     value named fullName [e.g., James and Brown will be combined to read James Brown].'''
     query = """
-          SELECT username, FirstNameFirst(guest.username) AS Name FROM guest
+          SELECT first_name, last_name, FirstNameFirst(guest.first_name, guest.last_name) AS Full_Name from guest
+          where first_name = '{0}' and last_name = '{1}'
             """
-
-    return query
+    final = query.format(firstname, lastname)
+    return final
     
