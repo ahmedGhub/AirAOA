@@ -161,8 +161,72 @@ def q10_firstNameFirst():
     cur.execute(query)
     return cur.fetchall()
 
+
+def displayQuery(output):
+    for row in output:
+        row_line_len= len(row)*15
+        print("")
+        print("-"*(int(1.25*row_line_len)))
+        for item in row:
+            
+            print(" | ",str(item).strip(),end="" )
+            rest= 15-len(str(item).strip())
+            print(" "*rest, end="" )
+        print("|",end="")
+    print("")   
+    print("-"*(int(1.25*row_line_len)))
+
+
+def adminInterface():
+    while True:
+        choise= int(input("please chose one of the following functionalities\n   1-List all managers and employees with salaries >= $15000\n   2-Enter costom SQL\nYour choice is: "))
+        if choise ==1:
+            pass
+        elif choise==2:
+            print("Please enter desired Query ")
+            sql= input("->")
+            cur.execute(sql)
+            result= cur.fetchall()
+            displayQuery(result)
+        else:
+            print("")
+            print("")
+            print("please insert only one of these three integers.")
+            print("")
+            print("")
+            continue 
+
+def hostInterface():
+    pass
+
+
+def guestInterface():
+    pass
+
 def main():
-    print(q1())
+    while True:
+        user= int(input("For Authorization purposes please specify you identity \nPlease choose one of the following options:\n     1-Administrator\n     2-Host/guest\n     3-Branch employee\n your choice is:  "))
+        
+        if user == 1:
+           adminInterface()
+        elif user == 2:
+            hostInterface()
+        elif user ==3:
+            guestInterface()
+        else :
+            print("")
+            print("")
+            print("please insert only one of these three integers.")
+            print("")
+            print("")
+            continue 
+        
+        
+        
+        
+        
+    # output= q1_guestListQuery()
+    # displayQuery(output)
 
     cur.close()
 
