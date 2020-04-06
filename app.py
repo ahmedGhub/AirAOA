@@ -79,7 +79,11 @@ def hostInterface():
             username= input("please enter your user name please: ")
             result=queries.q8_guestBill(username)
             if result:
-                displayQuery(result)
+                try:
+                    displayQuery(result)
+                except:
+                    print("User name is incorrect")
+                    pass
             else:
                 print("there was an error in your syntax")
                 
@@ -90,7 +94,10 @@ def hostInterface():
             
             result=queries.q9_guestPhoneUpdate(phone,username)
             if result:
-                displayQuery(result)
+                try:
+                    displayQuery(result)
+                except:
+                    print("user name is incorrect! ")
             else:
                 print("there was an error in your syntax")
                 
@@ -128,10 +135,13 @@ def employeeInterface():
         
         
         elif choise==8:
-            username= input("please enter the user name please")
+            username= input("please enter the user name please: ")
             result=queries.q8_guestBill(username)
             if result:
-                displayQuery(result)
+                try:
+                    displayQuery(result)
+                except:
+                    print("please inter correct username")
             else:
                 print("there was an error in your syntax")
         
@@ -141,14 +151,23 @@ def employeeInterface():
             
             result=queries.q9_guestPhoneUpdate(phone,username)
             if result:
-                displayQuery(result)
+                try:    
+                    displayQuery(result)
+                except:
+                    print("please enter correct user name and password!")
+                    pass
             else:
                 print("there was an error in your syntax")
            
         elif choise==10:
             first= input("please enter the first name: ")
             last = input("please enter the last name: ")
-            displayQuery(queries.q10_firstNameFirst(first,last))
+            
+            try:    
+                displayQuery(queries.q10_firstNameFirst(first,last))
+            except:
+                print("Either first or last name is incorrect")
+                pass
         
         
         elif choise==11:
