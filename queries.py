@@ -1,28 +1,3 @@
-import psycopg2
-import creds
-
-# connect to the db
-con = psycopg2.connect(
-    host=creds.host,
-    database=creds.database,
-    user=creds.user,
-    password=creds.password,
-    port=creds.port
-)
-
-cur = con.cursor()
-
-# insert into db
-# cur.execute("insert into branch (branch_id, country, location) values (%s, %s, %s);", (1257, 'Canada', 'uOttawa'))
-#execute the query
-# cur.execute('select * from branch')
-# rows = cur.fetchall()
-# for r in rows:
-#     print (r)
-# commit the transaction
-# con.commit()
-
-
 def q1_guestListQuery():
     '''Give the details of all the guests who rented properties.
     Please display the columns as guest name, rental type, rental
@@ -36,8 +11,8 @@ def q1_guestListQuery():
                 NATURAL JOIN  payment 
                 ORDER BY  payment_type ASC ,signing_date DESC"""
 
-    cur.execute(query)
-    return cur.fetchall()
+    
+    return query
 
 def q2_guestListView():
     '''Create a view named GuestListView that gives the details of
@@ -45,8 +20,8 @@ def q2_guestListView():
     '''
     query = """SELECT * FROM GuestListView"""
 
-    cur.execute(query)
-    return cur.fetchall()
+    
+    return query
 
 
 def q3_cheapestRental():
@@ -60,8 +35,8 @@ def q3_cheapestRental():
             WHERE price.price = min_price.value AND end_date < CURRENT_TIMESTAMP
             """
 
-    cur.execute(query)
-    return cur.fetchall()
+    
+    return query
 
 
 def q4_allProperties():
@@ -77,8 +52,8 @@ def q4_allProperties():
             ORDER BY rented_props.country, averageratings.avg_rating;
             """
 
-    cur.execute(query)
-    return cur.fetchall()
+    
+    return query
 
 
 def q5_propertiesNotRented():
@@ -90,8 +65,8 @@ def q5_propertiesNotRented():
             SELECT property_id FROM rental_agreement);
             """
 
-    cur.execute(query)
-    return cur.fetchall()
+    
+    return query
 
 
 def q6_rented10th():
@@ -102,8 +77,8 @@ def q6_rented10th():
 	        WHERE 10 BETWEEN EXTRACT (DAY FROM start_date) AND EXTRACT (DAY FROM end_date)
             """
 
-    cur.execute(query)
-    return cur.fetchall()
+    
+    return query
 
 
 def q7_employee15k():
@@ -117,8 +92,8 @@ def q7_employee15k():
             ORDER BY position DESC, username
             """
 
-    cur.execute(query)
-    return cur.fetchall()
+    
+    return query
 
 
 def q8_guestBill(username):
@@ -133,9 +108,9 @@ def q8_guestBill(username):
             WHERE guest_username = '{0}'
 
             """
-
-    cur.execute(query.format(username))
-    return cur.fetchall()
+    final= query.format(username)
+   
+    return final
 
 
 def q9_guestPhoneUpdate(phone_number, username):
@@ -143,8 +118,8 @@ def q9_guestPhoneUpdate(phone_number, username):
     query = """
            UPDATE user_phone_guest SET phone_number = {0} WHERE username = '{1}'
             """
-
-    cur.execute(query.format(phone_number, username))
+    final=query.format(phone_number, username)
+    return final 
 
 
 # note here i am only calling the function without creating it
@@ -158,81 +133,5 @@ def q10_firstNameFirst():
           SELECT username, FirstNameFirst(guest.username) AS Name FROM guest
             """
 
-    cur.execute(query)
-    return cur.fetchall()
-
-
-def displayQuery(output):
-    for row in output:
-        row_line_len= len(row)*15
-        print("")
-        print("-"*(int(1.25*row_line_len)))
-        for item in row:
-            
-            print(" | ",str(item).strip(),end="" )
-            rest= 15-len(str(item).strip())
-            print(" "*rest, end="" )
-        print("|",end="")
-    print("")   
-    print("-"*(int(1.25*row_line_len)))
-
-
-def adminInterface():
-    while True:
-        choise= int(input("please chose one of the following functionalities\n   1-List all managers and employees with salaries >= $15000\n   2-Enter costom SQL\nYour choice is: "))
-        if choise ==1:
-            pass
-        elif choise==2:
-            print("Please enter desired Query ")
-            sql= input("->")
-            cur.execute(sql)
-            result= cur.fetchall()
-            displayQuery(result)
-        else:
-            print("")
-            print("")
-            print("please insert only one of these three integers.")
-            print("")
-            print("")
-            continue 
-
-def hostInterface():
-    pass
-
-
-def guestInterface():
-    pass
-
-def main():
-    while True:
-        user= int(input("For Authorization purposes please specify you identity \nPlease choose one of the following options:\n     1-Administrator\n     2-Host/guest\n     3-Branch employee\n your choice is:  "))
-        
-        if user == 1:
-           adminInterface()
-        elif user == 2:
-            hostInterface()
-        elif user ==3:
-            guestInterface()
-        else :
-            print("")
-            print("")
-            print("please insert only one of these three integers.")
-            print("")
-            print("")
-            continue 
-        
-        
-        
-        
-        
-    # output= q1_guestListQuery()
-    # displayQuery(output)
-
-    cur.close()
-
-    # close the connection
-    con.close()
-
-if __name__ == '__main__':
-    main()
+    return query
     
