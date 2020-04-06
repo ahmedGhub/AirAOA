@@ -146,7 +146,9 @@ def employeeInterface():
                 print("there was an error in your syntax")
            
         elif choise==10:
-            displayQuery(queries.q10_firstNameFirst())
+            first= input("please enter the first name: ")
+            last = input("please enter the last name: ")
+            displayQuery(queries.q10_firstNameFirst(first,last))
         
         
         elif choise==11:
