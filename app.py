@@ -76,7 +76,7 @@ def hostInterface():
         
         
         elif choise==2:
-            username= input("please enter your user name please: ")
+            username= input("please enter your user name: ")
             result=queries.q8_guestBill(username)
             if result:
                 try:
@@ -89,7 +89,7 @@ def hostInterface():
                 
                 
         elif choise==3:
-            username= input("please enter your user name please: ")
+            username= input("please enter your user name: ")
             phone=input("please enter your new phone number: ")
             
             result=queries.q9_guestPhoneUpdate(phone,username)
@@ -135,7 +135,9 @@ def employeeInterface():
         
         
         elif choise==8:
+
             username= input("please enter the user name please: ")
+
             result=queries.q8_guestBill(username)
             if result:
                 try:
@@ -146,7 +148,7 @@ def employeeInterface():
                 print("there was an error in your syntax")
         
         elif choise==9:
-            username= input("please enter your user name please: ")
+            username= input("please enter your user name: ")
             phone=input("please enter your new phone number: ")
             
             result=queries.q9_guestPhoneUpdate(phone,username)
