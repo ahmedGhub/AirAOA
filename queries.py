@@ -135,4 +135,18 @@ def q10_firstNameFirst(firstname, lastname):
             """
     final = query.format(firstname, lastname)
     return final
+
+
+def q11_insertIntoProperties(property_id, host_username, house_number, st, city, prov, country, type, room_type, accom, bathrooms, bedrooms,
+                            beds, price, allowed_guests, home_type, rules, ameneties, prop_class):
+    '''Create and test a user-defined function named FirstNameFirst that combines
+    two attributes of the guest named firstName and lastName into a concatenated
+    value named fullName [e.g., James and Brown will be combined to read James Brown].'''
+    query = """
+            insert into property values ({0}, '{1}', {2}, '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', {9}, {10}, {11}, {12});
+            insert into price  values ({13}, {14}, {15}, '{16}', '{17}', '{18}', '{19}');
+            """
+    final = query.format(property_id, host_username, house_number, st, city, prov, country, type, room_type, accom, bathrooms,
+                         bedrooms, beds, property_id, price, allowed_guests, home_type, rules, ameneties, prop_class)
+    return final
     
