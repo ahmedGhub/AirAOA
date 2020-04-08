@@ -5,7 +5,7 @@
 -- Dumped from database version 11.6
 -- Dumped by pg_dump version 12.0
 
--- Started on 2020-04-06 16:35:08 EDT
+-- Started on 2020-04-08 00:34:04 EDT
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -17,26 +17,6 @@ SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
-
---
--- TOC entry 212 (class 1255 OID 924984)
--- Name: firstfirst(character varying, character varying); Type: FUNCTION; Schema: public; Owner: agawi052
---
-
-CREATE FUNCTION public.firstfirst(guest_fname character varying, guest_lname character varying) RETURNS character varying
-    LANGUAGE plpgsql
-    AS $$
-	DECLARE full_name varchar(30);
-	BEGIN	
-		SELECT CONCAT(first_name, ' ', last_name) INTO full_name
-		FROM guest 
-		WHERE guest.first_name = guest_Fname and guest.last_name = guest_Lname;
-	RETURN full_name;
-END
-$$;
-
-
-ALTER FUNCTION public.firstfirst(guest_fname character varying, guest_lname character varying) OWNER TO agawi052;
 
 --
 -- TOC entry 211 (class 1255 OID 827520)
@@ -59,7 +39,7 @@ $$;
 ALTER FUNCTION public.firstnamefirst(guest_username character varying) OWNER TO agawi052;
 
 --
--- TOC entry 213 (class 1255 OID 924985)
+-- TOC entry 212 (class 1255 OID 924985)
 -- Name: firstnamefirst(character varying, character varying); Type: FUNCTION; Schema: public; Owner: agawi052
 --
 
@@ -342,7 +322,7 @@ CREATE TABLE public.user_phone_host (
 ALTER TABLE public.user_phone_host OWNER TO agawi052;
 
 --
--- TOC entry 3379 (class 0 OID 803499)
+-- TOC entry 3378 (class 0 OID 803499)
 -- Dependencies: 208
 -- Data for Name: branch; Type: TABLE DATA; Schema: public; Owner: agawi052
 --
@@ -355,7 +335,7 @@ Zimbabwe
 
 
 --
--- TOC entry 3369 (class 0 OID 713455)
+-- TOC entry 3368 (class 0 OID 713455)
 -- Dependencies: 198
 -- Data for Name: employee; Type: TABLE DATA; Schema: public; Owner: agawi052
 --
@@ -370,7 +350,7 @@ eee	managee	20000	eo	zla	m	bassword	5	ooo	Alex	ON	EgyCan	ena@ooo.com	Canada
 
 
 --
--- TOC entry 3371 (class 0 OID 713468)
+-- TOC entry 3370 (class 0 OID 713468)
 -- Dependencies: 200
 -- Data for Name: guest; Type: TABLE DATA; Schema: public; Owner: agawi052
 --
@@ -383,7 +363,7 @@ Omar_Rad	Omar	Radwan	Mohsen	teet	123	Dwntwn	Ottawa	ON	Canada	rad@gmail.com
 
 
 --
--- TOC entry 3372 (class 0 OID 713476)
+-- TOC entry 3371 (class 0 OID 713476)
 -- Dependencies: 201
 -- Data for Name: host; Type: TABLE DATA; Schema: public; Owner: agawi052
 --
@@ -392,11 +372,13 @@ COPY public.host (username, first_name, middle_name, last_name, password, house_
 Bebo33	bebo	Mohsen	Ali	teet	123	Dwntwn	Ottawa	ON	Canada	bebo@gmail.com
 abcd	aa	bb	cd	passwordd	324	apple	toffaha	ABC	el-waha	abcd@alphabet.com
 manb	wa	aw	waw	passwordein	5489	orange	bortoqal	EFG	el-city	waawwaw@gmail.com
+Ahmed_Gawi	Ahmed	\N	Gawish	teet	123	Riverside	Ottawa	ON	Canada	gaw@gmail.com
+Omar_Rad	Omar	Mohsen	Radwan	teet	123	Dwntwn	Ottawa	ON	Canada	rad@gmail.com
 \.
 
 
 --
--- TOC entry 3374 (class 0 OID 713492)
+-- TOC entry 3373 (class 0 OID 713492)
 -- Dependencies: 203
 -- Data for Name: manages; Type: TABLE DATA; Schema: public; Owner: agawi052
 --
@@ -409,7 +391,7 @@ ccc	eee
 
 
 --
--- TOC entry 3368 (class 0 OID 713450)
+-- TOC entry 3367 (class 0 OID 713450)
 -- Dependencies: 197
 -- Data for Name: payment; Type: TABLE DATA; Schema: public; Owner: agawi052
 --
@@ -426,7 +408,7 @@ COPY public.payment (payment_id, payment_type, amount, status) FROM stdin;
 
 
 --
--- TOC entry 3367 (class 0 OID 713437)
+-- TOC entry 3366 (class 0 OID 713437)
 -- Dependencies: 196
 -- Data for Name: price; Type: TABLE DATA; Schema: public; Owner: agawi052
 --
@@ -437,27 +419,33 @@ COPY public.price (property_id, price, allowed_guests, home_type, rules, ameneti
 325	575.00	\N	\N	\N	\N	\N
 42	890.00	\N	\N	\N	\N	\N
 50	356.00	\N	\N	\N	\N	\N
+555	358.00	\N	\N	\N	\N	\N
+342	342.00	4	Condo	be ncie	wifi	A
+1474	100.00	3	apartment	dont use my bathroom	wifi	A
 \.
 
 
 --
--- TOC entry 3370 (class 0 OID 713463)
+-- TOC entry 3369 (class 0 OID 713463)
 -- Dependencies: 199
 -- Data for Name: property; Type: TABLE DATA; Schema: public; Owner: agawi052
 --
 
 COPY public.property (property_id, host_username, house_number, street, city, province, country, property_type, room_type, accommodates, bathrooms, bedrooms, beds) FROM stdin;
 123	Bebo33	1	eldo2y	Ottawa	On	Canada	Apartment	7lwa	1	1	1	1
+555	Bebo33	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 124	abcd	3	el-haram	Giza	AB	Egypt	House	W7sha	3	3	4	2
 325	Bebo33	4	el-do2i	Cairo	CA	Canada	Condo	nosnos	2	2	3	1
 42	manb	4	el-do2ii	Masr el-gedeeda	CA	Canada	Condo	ya3ni	5	5	1	0
 50	manb	4	shobra	Madinet nasr	CA	Zimbabwe	Condo	ya3ni	5	5	1	0
 51	manb	5	shobra	Madinet nasr	CA	Zimbabwe	Condo	ya3ni	5	5	1	0
+342	Ahmed_Gawi	1541	Riverview	Toronto	ON	Canada	Condo	Master	4	3	2	2
+1474	Ahmed_Gawi	2	meshfaker	ottawa	ON	Egypt	apartment	master	3	2	2	2
 \.
 
 
 --
--- TOC entry 3375 (class 0 OID 713497)
+-- TOC entry 3374 (class 0 OID 713497)
 -- Dependencies: 204
 -- Data for Name: rental_agreement; Type: TABLE DATA; Schema: public; Owner: agawi052
 --
@@ -474,7 +462,7 @@ Ahmed_Gawi	51	6	2020-03-13	2020-03-14	2020-01-27
 
 
 --
--- TOC entry 3373 (class 0 OID 713484)
+-- TOC entry 3372 (class 0 OID 713484)
 -- Dependencies: 202
 -- Data for Name: review; Type: TABLE DATA; Schema: public; Owner: agawi052
 --
@@ -490,7 +478,7 @@ Omar_Rad	50	3	ento zbala	3	5	4
 
 
 --
--- TOC entry 3378 (class 0 OID 782016)
+-- TOC entry 3377 (class 0 OID 782016)
 -- Dependencies: 207
 -- Data for Name: user_phone_employee; Type: TABLE DATA; Schema: public; Owner: agawi052
 --
@@ -500,7 +488,7 @@ COPY public.user_phone_employee (username, phone_number) FROM stdin;
 
 
 --
--- TOC entry 3376 (class 0 OID 781996)
+-- TOC entry 3375 (class 0 OID 781996)
 -- Dependencies: 205
 -- Data for Name: user_phone_guest; Type: TABLE DATA; Schema: public; Owner: agawi052
 --
@@ -511,7 +499,7 @@ Ahmed_Abdel	6136000273
 
 
 --
--- TOC entry 3377 (class 0 OID 782006)
+-- TOC entry 3376 (class 0 OID 782006)
 -- Dependencies: 206
 -- Data for Name: user_phone_host; Type: TABLE DATA; Schema: public; Owner: agawi052
 --
@@ -521,7 +509,7 @@ COPY public.user_phone_host (username, phone_number) FROM stdin;
 
 
 --
--- TOC entry 3230 (class 2606 OID 803503)
+-- TOC entry 3229 (class 2606 OID 803503)
 -- Name: branch branch_pkey; Type: CONSTRAINT; Schema: public; Owner: agawi052
 --
 
@@ -530,7 +518,7 @@ ALTER TABLE ONLY public.branch
 
 
 --
--- TOC entry 3208 (class 2606 OID 713462)
+-- TOC entry 3207 (class 2606 OID 713462)
 -- Name: employee employee_pkey; Type: CONSTRAINT; Schema: public; Owner: agawi052
 --
 
@@ -539,7 +527,7 @@ ALTER TABLE ONLY public.employee
 
 
 --
--- TOC entry 3212 (class 2606 OID 713475)
+-- TOC entry 3211 (class 2606 OID 713475)
 -- Name: guest guest_pkey; Type: CONSTRAINT; Schema: public; Owner: agawi052
 --
 
@@ -548,7 +536,7 @@ ALTER TABLE ONLY public.guest
 
 
 --
--- TOC entry 3214 (class 2606 OID 713483)
+-- TOC entry 3213 (class 2606 OID 713483)
 -- Name: host host_pkey; Type: CONSTRAINT; Schema: public; Owner: agawi052
 --
 
@@ -557,7 +545,7 @@ ALTER TABLE ONLY public.host
 
 
 --
--- TOC entry 3218 (class 2606 OID 713496)
+-- TOC entry 3217 (class 2606 OID 713496)
 -- Name: manages manages_pkey; Type: CONSTRAINT; Schema: public; Owner: agawi052
 --
 
@@ -566,7 +554,7 @@ ALTER TABLE ONLY public.manages
 
 
 --
--- TOC entry 3206 (class 2606 OID 713454)
+-- TOC entry 3205 (class 2606 OID 713454)
 -- Name: payment payment_pkey; Type: CONSTRAINT; Schema: public; Owner: agawi052
 --
 
@@ -575,7 +563,7 @@ ALTER TABLE ONLY public.payment
 
 
 --
--- TOC entry 3204 (class 2606 OID 713444)
+-- TOC entry 3203 (class 2606 OID 713444)
 -- Name: price price_pkey; Type: CONSTRAINT; Schema: public; Owner: agawi052
 --
 
@@ -584,7 +572,7 @@ ALTER TABLE ONLY public.price
 
 
 --
--- TOC entry 3210 (class 2606 OID 713467)
+-- TOC entry 3209 (class 2606 OID 713467)
 -- Name: property property_pkey; Type: CONSTRAINT; Schema: public; Owner: agawi052
 --
 
@@ -593,7 +581,7 @@ ALTER TABLE ONLY public.property
 
 
 --
--- TOC entry 3220 (class 2606 OID 804956)
+-- TOC entry 3219 (class 2606 OID 804956)
 -- Name: rental_agreement rental_agreement_payment_id_key; Type: CONSTRAINT; Schema: public; Owner: agawi052
 --
 
@@ -602,7 +590,7 @@ ALTER TABLE ONLY public.rental_agreement
 
 
 --
--- TOC entry 3222 (class 2606 OID 713501)
+-- TOC entry 3221 (class 2606 OID 713501)
 -- Name: rental_agreement rental_agreement_pkey; Type: CONSTRAINT; Schema: public; Owner: agawi052
 --
 
@@ -611,7 +599,7 @@ ALTER TABLE ONLY public.rental_agreement
 
 
 --
--- TOC entry 3216 (class 2606 OID 713491)
+-- TOC entry 3215 (class 2606 OID 713491)
 -- Name: review review_pkey; Type: CONSTRAINT; Schema: public; Owner: agawi052
 --
 
@@ -620,7 +608,7 @@ ALTER TABLE ONLY public.review
 
 
 --
--- TOC entry 3228 (class 2606 OID 813453)
+-- TOC entry 3227 (class 2606 OID 813453)
 -- Name: user_phone_employee user_phone_employee_pkey; Type: CONSTRAINT; Schema: public; Owner: agawi052
 --
 
@@ -629,7 +617,7 @@ ALTER TABLE ONLY public.user_phone_employee
 
 
 --
--- TOC entry 3224 (class 2606 OID 813447)
+-- TOC entry 3223 (class 2606 OID 813447)
 -- Name: user_phone_guest user_phone_guest_pkey; Type: CONSTRAINT; Schema: public; Owner: agawi052
 --
 
@@ -638,7 +626,7 @@ ALTER TABLE ONLY public.user_phone_guest
 
 
 --
--- TOC entry 3226 (class 2606 OID 813459)
+-- TOC entry 3225 (class 2606 OID 813459)
 -- Name: user_phone_host user_phone_host_pkey; Type: CONSTRAINT; Schema: public; Owner: agawi052
 --
 
@@ -647,133 +635,133 @@ ALTER TABLE ONLY public.user_phone_host
 
 
 --
--- TOC entry 3232 (class 2606 OID 865649)
+-- TOC entry 3231 (class 2606 OID 975385)
 -- Name: employee employee_branch_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: agawi052
 --
 
 ALTER TABLE ONLY public.employee
-    ADD CONSTRAINT employee_branch_id_fkey FOREIGN KEY (branch_id) REFERENCES public.branch(branch_id);
+    ADD CONSTRAINT employee_branch_id_fkey FOREIGN KEY (branch_id) REFERENCES public.branch(branch_id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- TOC entry 3238 (class 2606 OID 713527)
+-- TOC entry 3237 (class 2606 OID 975440)
 -- Name: manages manages_managee_username_fkey; Type: FK CONSTRAINT; Schema: public; Owner: agawi052
 --
 
 ALTER TABLE ONLY public.manages
-    ADD CONSTRAINT manages_managee_username_fkey FOREIGN KEY (managee_username) REFERENCES public.employee(username);
+    ADD CONSTRAINT manages_managee_username_fkey FOREIGN KEY (managee_username) REFERENCES public.employee(username) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- TOC entry 3237 (class 2606 OID 713522)
+-- TOC entry 3236 (class 2606 OID 975435)
 -- Name: manages manages_manager_username_fkey; Type: FK CONSTRAINT; Schema: public; Owner: agawi052
 --
 
 ALTER TABLE ONLY public.manages
-    ADD CONSTRAINT manages_manager_username_fkey FOREIGN KEY (manager_username) REFERENCES public.employee(username);
+    ADD CONSTRAINT manages_manager_username_fkey FOREIGN KEY (manager_username) REFERENCES public.employee(username) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- TOC entry 3231 (class 2606 OID 781953)
+-- TOC entry 3230 (class 2606 OID 975445)
 -- Name: price price_property_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: agawi052
 --
 
 ALTER TABLE ONLY public.price
-    ADD CONSTRAINT price_property_id_fkey FOREIGN KEY (property_id) REFERENCES public.property(property_id);
+    ADD CONSTRAINT price_property_id_fkey FOREIGN KEY (property_id) REFERENCES public.property(property_id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- TOC entry 3234 (class 2606 OID 803809)
+-- TOC entry 3233 (class 2606 OID 975455)
 -- Name: property property_country_fkey; Type: FK CONSTRAINT; Schema: public; Owner: agawi052
 --
 
 ALTER TABLE ONLY public.property
-    ADD CONSTRAINT property_country_fkey FOREIGN KEY (country) REFERENCES public.branch(branch_id);
+    ADD CONSTRAINT property_country_fkey FOREIGN KEY (country) REFERENCES public.branch(branch_id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- TOC entry 3233 (class 2606 OID 781961)
--- Name: property property_username_fkey; Type: FK CONSTRAINT; Schema: public; Owner: agawi052
+-- TOC entry 3232 (class 2606 OID 975450)
+-- Name: property property_host_username_fkey; Type: FK CONSTRAINT; Schema: public; Owner: agawi052
 --
 
 ALTER TABLE ONLY public.property
-    ADD CONSTRAINT property_username_fkey FOREIGN KEY (host_username) REFERENCES public.host(username);
+    ADD CONSTRAINT property_host_username_fkey FOREIGN KEY (host_username) REFERENCES public.host(username) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- TOC entry 3241 (class 2606 OID 781991)
+-- TOC entry 3240 (class 2606 OID 975560)
+-- Name: rental_agreement rental_agreement_guest_username_fkey; Type: FK CONSTRAINT; Schema: public; Owner: agawi052
+--
+
+ALTER TABLE ONLY public.rental_agreement
+    ADD CONSTRAINT rental_agreement_guest_username_fkey FOREIGN KEY (guest_username) REFERENCES public.guest(username) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3239 (class 2606 OID 975553)
 -- Name: rental_agreement rental_agreement_payment_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: agawi052
 --
 
 ALTER TABLE ONLY public.rental_agreement
-    ADD CONSTRAINT rental_agreement_payment_id_fkey FOREIGN KEY (payment_id) REFERENCES public.payment(payment_id);
+    ADD CONSTRAINT rental_agreement_payment_id_fkey FOREIGN KEY (payment_id) REFERENCES public.payment(payment_id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- TOC entry 3240 (class 2606 OID 781986)
+-- TOC entry 3238 (class 2606 OID 975548)
 -- Name: rental_agreement rental_agreement_property_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: agawi052
 --
 
 ALTER TABLE ONLY public.rental_agreement
-    ADD CONSTRAINT rental_agreement_property_id_fkey FOREIGN KEY (property_id) REFERENCES public.property(property_id);
+    ADD CONSTRAINT rental_agreement_property_id_fkey FOREIGN KEY (property_id) REFERENCES public.property(property_id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- TOC entry 3239 (class 2606 OID 781981)
--- Name: rental_agreement rental_agreement_username_fkey; Type: FK CONSTRAINT; Schema: public; Owner: agawi052
---
-
-ALTER TABLE ONLY public.rental_agreement
-    ADD CONSTRAINT rental_agreement_username_fkey FOREIGN KEY (guest_username) REFERENCES public.guest(username);
-
-
---
--- TOC entry 3235 (class 2606 OID 781966)
+-- TOC entry 3234 (class 2606 OID 975537)
 -- Name: review review_property_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: agawi052
 --
 
 ALTER TABLE ONLY public.review
-    ADD CONSTRAINT review_property_id_fkey FOREIGN KEY (property_id) REFERENCES public.property(property_id);
+    ADD CONSTRAINT review_property_id_fkey FOREIGN KEY (property_id) REFERENCES public.property(property_id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- TOC entry 3236 (class 2606 OID 781971)
+-- TOC entry 3235 (class 2606 OID 975542)
 -- Name: review review_username_fkey; Type: FK CONSTRAINT; Schema: public; Owner: agawi052
 --
 
 ALTER TABLE ONLY public.review
-    ADD CONSTRAINT review_username_fkey FOREIGN KEY (username) REFERENCES public.guest(username);
+    ADD CONSTRAINT review_username_fkey FOREIGN KEY (username) REFERENCES public.guest(username) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- TOC entry 3244 (class 2606 OID 782021)
+-- TOC entry 3243 (class 2606 OID 975420)
 -- Name: user_phone_employee user_phone_employee_username_fkey; Type: FK CONSTRAINT; Schema: public; Owner: agawi052
 --
 
 ALTER TABLE ONLY public.user_phone_employee
-    ADD CONSTRAINT user_phone_employee_username_fkey FOREIGN KEY (username) REFERENCES public.employee(username);
+    ADD CONSTRAINT user_phone_employee_username_fkey FOREIGN KEY (username) REFERENCES public.employee(username) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- TOC entry 3242 (class 2606 OID 782001)
+-- TOC entry 3241 (class 2606 OID 975425)
 -- Name: user_phone_guest user_phone_guest_username_fkey; Type: FK CONSTRAINT; Schema: public; Owner: agawi052
 --
 
 ALTER TABLE ONLY public.user_phone_guest
-    ADD CONSTRAINT user_phone_guest_username_fkey FOREIGN KEY (username) REFERENCES public.guest(username);
+    ADD CONSTRAINT user_phone_guest_username_fkey FOREIGN KEY (username) REFERENCES public.guest(username) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- TOC entry 3243 (class 2606 OID 782011)
+-- TOC entry 3242 (class 2606 OID 975430)
 -- Name: user_phone_host user_phone_host_username_fkey; Type: FK CONSTRAINT; Schema: public; Owner: agawi052
 --
 
 ALTER TABLE ONLY public.user_phone_host
-    ADD CONSTRAINT user_phone_host_username_fkey FOREIGN KEY (username) REFERENCES public.host(username);
+    ADD CONSTRAINT user_phone_host_username_fkey FOREIGN KEY (username) REFERENCES public.host(username) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- TOC entry 3385 (class 0 OID 0)
+-- TOC entry 3384 (class 0 OID 0)
 -- Dependencies: 3
 -- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
 --
@@ -781,7 +769,7 @@ ALTER TABLE ONLY public.user_phone_host
 GRANT ALL ON SCHEMA public TO pgsql;
 
 
--- Completed on 2020-04-06 16:35:16 EDT
+-- Completed on 2020-04-08 00:34:12 EDT
 
 --
 -- PostgreSQL database dump complete
