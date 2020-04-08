@@ -65,7 +65,7 @@ def adminInterface():
 def hostInterface():
     while True:
         try:
-            choise= int(input("please chose one of the following functionalities\n   1-Properties that are not rented yet.\n   2-Create my bill\n   3-Update my phone number\n   4-Exit\nYour choice is: "))
+            choise= int(input("please chose one of the following functionalities\n   1-Properties that are not rented yet.\n   2-Create my bill\n   3-Update my phone number\n   4-Add listings\n   5-Exit\nYour choice is: "))
         except:
             print("Please insert an integer ")
        
@@ -102,6 +102,35 @@ def hostInterface():
                 print("there was an error in your syntax")
                 
         elif choise==4:
+            property_id=input("please enter the property ID desired \n (this should be atleast a three digit integer)\n you Property ID is: ")
+            host_username=input("please enter your User name\n(this must be an existing user name ex: Ahmed_Gawi, Omar_Rad)\n your username is : ")
+            house_number= input("please enter your house number \n(this should also be and integer)\n your house number is : ")
+            st=input("please enter your street name \n(this should be a string)\n your street name is : ")
+            city=input("please name the city the property is located: ")
+            prov= input("please enter the province name the property is located: ")
+            country=input("please enter the country name\n(ex: Canada, Egypt, Zimbabwe)\n> ")
+            type_= input("please enter the type of the property \n (ex: Condo,House,Apartment)\n your property type is : ")
+            room_type= input("please enter the room type included\n (ex: Regular, Master):\n your room type is: ")
+            accom= input("please enter the number of visitors allowed per night\n(this should be an integer)\n The number of visitors is:  ")
+            bathrooms= input("please enter the number of bathrooms included\n(this should be an integer)\n The number of BR is: ")
+            bedrooms=input("please enter the number of bedrooms included\n(this should be an integer)\n The number of bedrooms is: ")
+            beds=input("please enter the total number of beds: ")
+            price= input("please enter the desired price per night\n(this could be a float up to two decimel points)\n The price: ")
+            allowed_guests= accom
+            home_type=type_
+            rules= input("please enter special instructions that you have. \n(this should be a string of 255 characters)\n> ")
+            ameneties= input("please enter any added aminities to your properties\n (ex: wifi, NA)\n> ")
+            prop_class=input("please enter the class of your property\n(this should be a string)\n> ")
+            # try:    
+            displayQuery(queries.q11_insertIntoProperties(property_id, host_username, house_number, st, city, prov, country, type_, room_type, accom, bathrooms, bedrooms,
+                        beds, price, allowed_guests, home_type, rules, ameneties, prop_class))
+            # except:
+            #     print("** One of your entries did not corespond to the instructions please try again carefully **")
+            #     pass
+            
+        
+                
+        elif choise==5:
             break
 
 def employeeInterface():
@@ -170,7 +199,6 @@ def employeeInterface():
             except:
                 print("Either first or last name is incorrect")
                 pass
-        
         
         elif choise==11:
             break
