@@ -17,6 +17,7 @@ cur = con.cursor()
 
 def displayQuery(query):
     cur.execute(query)
+    
     try:
         output=cur.fetchall()
     except:
@@ -124,6 +125,8 @@ def hostInterface():
             # try:    
             displayQuery(queries.q11_insertIntoProperties(property_id, host_username, house_number, st, city, prov, country, type_, room_type, accom, bathrooms, bedrooms,
                         beds, price, allowed_guests, home_type, rules, ameneties, prop_class))
+            con.commit()
+            print("** your property has been listed succesfully **")
             # except:
             #     print("** One of your entries did not corespond to the instructions please try again carefully **")
             #     pass
