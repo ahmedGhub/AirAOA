@@ -82,6 +82,7 @@ def hostInterface():
             if result:
                 try:
                     displayQuery(result)
+                    
                 except:
                     print("User name is incorrect")
                     pass
@@ -97,6 +98,7 @@ def hostInterface():
             if result:
                 try:
                     displayQuery(result)
+                    con.commit()
                 except:
                     print("user name is incorrect! ")
             else:
@@ -187,6 +189,7 @@ def employeeInterface():
             if result:
                 try:    
                     displayQuery(result)
+                    con.commit()
                 except:
                     print("please enter correct user name and password!")
                     pass
