@@ -73,7 +73,7 @@ def q6_rented10th():
     '''List all the details of all properties rented on the 10 th day of any month.
     Ensure to insert dates in your table that correspond in order to run your query. '''
     query = """
-            SELECT property.* , start_date, end_date FROM property NATURAL JOIN  rental_agreement
+            SELECT start_date, end_date, property.*   FROM property NATURAL JOIN  rental_agreement
 	        WHERE 10 BETWEEN EXTRACT (DAY FROM start_date) AND EXTRACT (DAY FROM end_date)
             """
 
