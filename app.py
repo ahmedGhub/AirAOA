@@ -22,6 +22,19 @@ def displayQuery(query):
         output=cur.fetchall()
     except:
         return
+
+    num_fields = len(cur.description)
+    field_names = [i[0] for i in cur.description]
+
+    row_line_len = len(field_names) * 15
+    print("")
+    print("-" * (int(1.25 * row_line_len)))
+    for item in field_names:
+        print(" | ", str(item).strip(), end="")
+        rest = 15 - len(str(item).strip())
+        print(" " * rest, end="")
+    print("|", end="")
+
     for row in output:
         row_line_len= len(row)*15
         print("")
@@ -141,7 +154,7 @@ def hostInterface():
 def employeeInterface():
     while True:
         try:
-            choise= int(input("please chose one of the following functionalities:\n    1-Info of guests who rented properties.\n    2-detailed view of all the guests\n    3-Display the details of the cheapest (completed) rental.\n    4-Display rented properties \n    5-Properties that are not rented yet.\n    6-List, with detail, all properties rented on the 10 th day of any month.\n    7-List all managers and employees with salaries >= $15000\n    8-Create user bill\n    9-Update user phone number\n    10-List users full names\n    11-exit\nYour choice is: "))
+            choise= int(input("please chose one of the following functionalities:\n    1-Info of guests who rented properties.\n    2-Detailed view of all the guests\n    3-Display the details of the cheapest (completed) rental.\n    4-Display rented properties \n    5-Properties that are not rented yet.\n    6-List, with detail, all properties rented on the 10 th day of any month.\n    7-List all managers and employees with salaries >= $15000\n    8-Create user bill\n    9-Update user phone number\n    10-List users full names\n    11-exit\nYour choice is: "))
         except:
             print("Please insert an integer ")
         
@@ -224,7 +237,7 @@ def employeeInterface():
 
 def main():
     while True:
-        user= int(input("For Authorization purposes please specify you identity \nPlease choose one of the following options:\n     1-Administrator\n     2-Host/guest\n     3-Branch employee\n     4-Exit\n your choice is:  "))
+        user= int(input("For Authorization purposes please specify your identity \nPlease choose one of the following options:\n     1-Administrator\n     2-Host/guest\n     3-Branch employee\n     4-Exit\n your choice is:  "))
         
         if user == 1:
            adminInterface()
