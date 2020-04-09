@@ -26,7 +26,7 @@ def q2_guestListView():
 
 def q3_cheapestRental():
     '''Display the details of the cheapest (completed) rental.'''
-    query = """WITH min_price(value) AS (SELECT MIN(price) FROM price) 
+    query = """WITH min_price(value) AS (select min(price) from price natural join property natural join rental_agreement  where end_date < current_timestamp) 
             SELECT guest.first_name AS Guest_first_name, guest.last_name  AS Guest_last_name,
 			host.first_name AS Host_first_name, host.last_name AS Host_last_name,
 			property_type, start_date, end_date, price 
